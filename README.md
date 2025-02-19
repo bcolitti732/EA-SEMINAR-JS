@@ -1,5 +1,9 @@
 # EA-JS
 
+# Canvis del seminari
+Fets a la carpeta 4-event-loop, a 9-secuencial-async.js
+Referencies: https://www.w3schools.com/jsref/jsref_map.asp
+
 ## Requisitos Previos
 
 Asegúrate de tener instalados los siguientes programas en tu sistema:
