@@ -31,14 +31,30 @@ async function fetchOrderDetails() {
   try {
     const user = await getUser(1);
     const posts = await getPosts(user.id);
-    const comments = await getComments(posts[0].id);
+    
+    const allComments = []; //per obtenir tots els comentaris dels posts de l'usuari amb id 
+    for (const post of posts) {
+      const comments = await getComments(post.id);
+      allComments.push(...comments);
+    }
 
-    console.log("Comentarios del primer post:", comments);
+    console.log("Usuari:", user);
+    console.log("Posts del usuari:", posts.map(post => post.title));
+    console.log("Tots els comnentaris:", allComments.map(comment => comment.email));
+
+    //map filter sort
+    const processedComments = allComments
+      .map(comment => ({ ...comment, email: comment.email.toUpperCase() }))
+      .filter(comment => comment.id > 45 && comment.id < 50)
+      .sort((a, b) => a.email.localeCompare(b.email));
+
+    console.log("Comentarios procesados:", processedComments);
     console.log("Fin");
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 
 console.log("Inicio");
 
